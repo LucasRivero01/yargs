@@ -1,5 +1,5 @@
 const fs = require('fs');
-var color = require('colors/safe');
+var color = require('colors');
 const crearArchivo = (factor = 8, listar) => {
     return new Promise((resolve, reject) => {
         let resultado = '';
@@ -7,12 +7,12 @@ const crearArchivo = (factor = 8, listar) => {
 
         for (let i = 1; i <= 10; i++) {
             //\n para salto de linea
-            resultado += `${factor} x ${i} = ${factor * i}\n`;
+            resultado += `${factor} ${'x'.green} ${i} ${'='.green} ${factor * i}\n`;
         }
         if (listar) {
-            console.log(color.yellow(`-----------------------`))
-            console.log(color.yellow(`  tabla-del-${factor}.txt`))
-            console.log(color.yellow(`-----------------------`))
+            console.log(color.green(`========================`))
+            console.log('  tabla-del: '.green, color.blue(factor))
+            console.log(color.green(`========================`))
             console.log(resultado);
         }
         fs.writeFile(`tabla-del-${factor}.txt`, resultado, (err) => {
